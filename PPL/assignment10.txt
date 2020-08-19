@@ -1,0 +1,33 @@
+l1=[]
+l2=[]
+a= int(raw_input ('enter total numbers of word '))
+i=0
+c=0
+j=1
+k=0
+for i in range(0,a):
+    x=str(raw_input())
+    l1.append(x)
+print(l1)
+for i in range(0,a):
+    k=int(len(l1[i]))
+    for j in range(1,k):
+        if l1[i][0]==l1[i][j]:
+            l2.append(l1[i])
+            break
+print('The new list is -')   
+print(l2)  
+
+'''
+enter total numbers of word 8
+fox
+india
+asia
+baboon
+shreya
+riya
+qwerty
+laptop['fox', 'india', 'asia', 'baboon', 'shreya', 'riya', 'qwerty', 'laptop']
+The new list is -
+['india', 'asia', 'baboon']
+'''

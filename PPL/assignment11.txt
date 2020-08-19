@@ -1,0 +1,47 @@
+l1=[]
+l2=[]
+l3=[]
+a= int(raw_input ('enter total numbers of numbers '))
+i=0
+print('enter the numbers ')
+for i in range(0,a):
+    x=int(raw_input())
+    l1.append(x)
+print("The given list is-")
+print(l1)
+for i in range(0,len(l1)): 
+        if (l1[i] % 2 == 0): 
+            l2.append(l1[i]) 
+        else: 
+            l3.append(l1[i]) 
+print('The list of even numbers is -')
+print(l2) 
+print('The list of odd numbers is -')
+print(l3)
+print('The sum of even numbers is -') 
+print(sum(l2))
+print('The sum of odd numbers is -')
+print(sum(l3)) 
+
+
+'''
+enter total numbers of numbers 7
+enter the numbers
+12
+34567
+22
+987
+44
+23
+The given list is-
+[12, 34, 567, 22, 987, 44, 23]
+The list of even numbers is -
+[12, 34, 22, 44]
+The list of odd numbers is -
+[567, 987, 23]
+The sum of even numbers is -
+112
+The sum of odd numbers is -
+1577
+'''
+
