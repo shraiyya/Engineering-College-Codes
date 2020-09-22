@@ -1,4 +1,10 @@
-
+/*
+ * SHREYA CHETAN PAWASKAR
+ * ROLL NO-2939
+ * BATCH -C3
+ * SY COMP DIVISION C
+ * Assignment- tree traversals in java
+ */
 package trees;
 
 import java.util.Scanner;
