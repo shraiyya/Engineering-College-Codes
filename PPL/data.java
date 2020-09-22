@@ -1,4 +1,6 @@
 //employee-person
+//a. Constructors b. Constructor Overloading c. Function Overloading d. Function Overriding e. Inheritance 
+
 package employeeperson;
 import java.util.Scanner;
 //the person is the parent class
