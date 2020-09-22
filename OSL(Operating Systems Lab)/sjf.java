@@ -1,3 +1,10 @@
+/*
+ * Name: Shreya Pawaskar
+ * Roll no: 2939
+ * Batch: C3
+ * Assignment: SJF,SRTF
+ */
+
 import java.util.Scanner;
 import java.util.Arrays;
 
