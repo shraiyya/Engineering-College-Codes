@@ -1,3 +1,4 @@
+//employee-person
 package employeeperson;
 import java.util.Scanner;
 //the person is the parent class
