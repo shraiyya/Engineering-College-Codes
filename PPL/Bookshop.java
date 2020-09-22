@@ -1,4 +1,4 @@
-
+//Create an application for a book shop and maintain the inventory of books that are being sold at the shop
 import java.util.* ;
 class Book//parent class Book
 {
