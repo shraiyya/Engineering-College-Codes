@@ -1,3 +1,5 @@
+# words with repeating letters 
+
 l1=[]
 l2=[]
 a= int(raw_input ('enter total numbers of word '))
