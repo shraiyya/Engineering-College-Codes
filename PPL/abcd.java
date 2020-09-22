@@ -1,3 +1,4 @@
+//banking application-exception handling
 package banks;
 import java.util.Scanner;
 class exception1 extends Exception
