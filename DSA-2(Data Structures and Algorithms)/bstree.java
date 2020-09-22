@@ -1,3 +1,10 @@
+/*
+ * SHREYA CHETAN PAWASKAR
+ * ROLL NO-2939
+ * BATCH -C3
+ * SY COMP DIVISION C
+ * Assignment- Binary Search Tree operations
+ */
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
