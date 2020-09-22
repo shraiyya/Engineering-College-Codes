@@ -3,6 +3,7 @@
  * ROLL NO-2939
  * BATCH -C3
  * SY COMP DIVISION C
+ * Assignment- Kruskal in Java
  */
 
 import java.util.Collections;
