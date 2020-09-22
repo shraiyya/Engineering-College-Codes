@@ -1,3 +1,5 @@
+//Write a JAVA program to perform String operations.
+
 package stringpro;
 import java.util.Scanner;
 public class string {
