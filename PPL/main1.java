@@ -1,4 +1,4 @@
-
+//create an abstract data types like Stack and List  and implement its methods.
 package javaframework;
 import java.util.ArrayList;
 import java.util.Scanner;
