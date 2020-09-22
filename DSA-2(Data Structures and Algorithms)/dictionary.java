@@ -1,3 +1,10 @@
+/*
+ * SHREYA CHETAN PAWASKAR
+ * ROLL NO-2939
+ * BATCH -C3
+ * SY COMP DIVISION C
+ * Assignment- Implementing Dictionary using trees
+ */
 package dictionary;
 
 import java.util.LinkedList;
