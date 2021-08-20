@@ -1,0 +1,180 @@
+Assignment No 8: Implementation of MongoDB Aggregation.
+
+Shreya Pawaskar
+Cno - C22018881961
+Roll no - 3947
+Division - C
+
+> use cities
+switched to db cities
+
+> db.cities.find()
+{ "_id" : "03031", "city" : "AMHERST", "loc" : [ -71.607536, 42.856944 ], "pop" : 13998, "state" : "NH" }
+{ "_id" : "03032", "city" : "AUBURN", "loc" : [ -71.344892, 42.992529 ], "pop" : 4085, "state" : "NH" }
+{ "_id" : "03033", "city" : "BROOKLINE", "loc" : [ -71.666254, 42.738442 ], "pop" : 2410, "state" : "NH" }
+{ "_id" : "03034", "city" : "CANDIA", "loc" : [ -71.304857, 43.058514 ], "pop" : 3557, "state" : "NH" }
+{ "_id" : "03045", "city" : "DUNBARTON", "loc" : [ -71.56264, 43.018224 ], "pop" : 9428, "state" : "NH" }
+{ "_id" : "02804", "city" : "ASHAWAY", "loc" : [ -71.783745, 41.423054 ], "pop" : -7528, "state" : "RI" }
+{ "_id" : "02806", "city" : "BARRINGTON", "loc" : [ -71.317497, 41.744334 ], "pop" : 15849, "state" : "RI" }
+{ "_id" : "02807", "city" : "BLOCK ISLAND", "loc" : [ -71.574825, 41.171546 ], "pop" : 836, "state" : "RI" }
+{ "_id" : "29102", "city" : "PAXVILLE", "loc" : [ -80.222078, 33.667716 ], "pop" : 14407, "state" : "SA" }
+{ "_id" : "29104", "city" : "SAINT CHARLES", "loc" : [ -80.234927, 34.046463 ], "pop" : 24030, "state" : "SA" }
+{ "_id" : "29105", "city" : "MONETTA", "loc" : [ -81.536299, 33.774729 ], "pop" : 20608, "state" : "SA" }
+{ "_id" : "24701", "city" : "BLUEWELL", "loc" : [ -81.229023, 37.279788 ], "pop" : 22561, "state" : "WV" }
+{ "_id" : "24712", "city" : "ATHENS", "loc" : [ -80.997362, 37.432298 ], "pop" : 2863, "state" : "WV" }
+{ "_id" : "24714", "city" : "BEESON", "loc" : [ -81.206215, 37.490894 ], "pop" : 140, "state" : "WV" }
+{ "_id" : "24715", "city" : "BRAMWELL", "loc" : [ -81.32556, 37.332114 ], "pop" : 762, "state" : "WV" }
+{ "_id" : "06065", "city" : "RIVERTON", "loc" : [ -73.025469, 41.961395 ], "pop" : 155, "state" : "CT" }
+{ "_id" : "06066", "city" : "VERNON ROCKVILLE", "loc" : [ -72.464855, 41.850073 ], "pop" : 31966, "state" : "CT" }
+{ "_id" : "06067", "city" : "ROCKY HILL", "loc" : [ -72.663197, 41.658295 ], "pop" : 16638, "state" : "CT" }
+{ "_id" : "06068", "city" : "SALISBURY", "loc" : [ -73.421492, 42.001452 ], "pop" : 1686, "state" : "CT" }
+{ "_id" : "06069", "city" : "SHARON", "loc" : [ -73.457758, 41.871446 ], "pop" : 2794, "state" : "CT" }
+{ "_id" : "06070", "city" : "SIMSBURY", "loc" : [ -72.821267, 41.873712 ], "pop" : 14589, "state" : "CT" }
+{ "_id" : "06071", "city" : "SOMERS", "loc" : [ -72.458266, 41.997813 ], "pop" : 9685, "state" : "CT" }
+{ "_id" : "06073", "city" : "SOUTH GLASTONBUR", "loc" : [ -72.554308, 41.660682 ], "pop" : 3614, "state" : "CT" }
+{ "_id" : "06074", "city" : "SOUTH WINDSOR", "loc" : [ -72.557585, 41.834081 ], "pop" : 22090, "state" : "CT" }
+{ "_id" : "06076", "city" : "STAFFORD SPRINGS", "loc" : [ -72.289857, 41.966127 ], "pop" : 12392, "state" : "CT" }
+{ "_id" : "06078", "city" : "SUFFIELD", "loc" : [ -72.641997, 41.990029 ], "pop" : 8518, "state" : "CT" }
+{ "_id" : "06081", "city" : "TARIFFVILLE", "loc" : [ -72.767786, 41.907715 ], "pop" : 1477, "state" : "CT" }
+{ "_id" : "06082", "city" : "ENFIELD", "loc" : [ -72.565218, 41.989016 ], "pop" : 45558, "state" : "CT" }
+
+
+
+
+1. Display only the city name & its population for all the cities in state “NH”
+> db.cities.aggregate([ 
+...    { $match: { "state": "NH"} } , 
+...    { $project:  { pop: 1, city: 1 }} 
+...    ])
+{ "_id" : "03031", "city" : "AMHERST", "pop" : 13998 }
+{ "_id" : "03032", "city" : "AUBURN", "pop" : 4085 }
+{ "_id" : "03033", "city" : "BROOKLINE", "pop" : 2410 }
+{ "_id" : "03034", "city" : "CANDIA", "pop" : 3557 }
+{ "_id" : "03045", "city" : "DUNBARTON", "pop" : 9428 }
+
+
+2.Count the number of cities in each state.
+> db.cities.aggregate([
+...    {
+...       $group:{
+...          _id:{
+...             state:"$state"
+...          },
+...          no_of_cities:{
+...             $sum:1
+...          }}}])
+{ "_id" : { "state" : "WV" }, "no_of_cities" : 4 }
+{ "_id" : { "state" : "SA" }, "no_of_cities" : 3 }
+{ "_id" : { "state" : "CT" }, "no_of_cities" : 13 }
+{ "_id" : { "state" : "NH" }, "no_of_cities" : 5 }
+{ "_id" : { "state" : "RI" }, "no_of_cities" : 3 }
+
+
+
+
+
+3. Display the names of top 10 cities with largest population along with state
+name.
+> db.cities.aggregate( [
+...     { $sort: { pop: -1 } },
+...     { $limit:10},
+...     { $project:
+...     { _id :0,
+...       state: 1,
+...       city: 1,
+... }}
+... ] )
+{ "city" : "ENFIELD", "state" : "CT" }
+{ "city" : "VERNON ROCKVILLE", "state" : "CT" }
+{ "city" : "SAINT CHARLES", "state" : "SA" }
+{ "city" : "BLUEWELL", "state" : "WV" }
+{ "city" : "SOUTH WINDSOR", "state" : "CT" }
+{ "city" : "MONETTA", "state" : "SA" }
+{ "city" : "ROCKY HILL", "state" : "CT" }
+{ "city" : "BARRINGTON", "state" : "RI" }
+{ "city" : "SIMSBURY", "state" : "CT" }
+{ "city" : "PAXVILLE", "state" : "SA" }
+
+
+
+
+4. Display the name of state and its average population
+> db.cities.aggregate(
+...    [
+...      {
+...        $group:
+...          {
+...            _id: "$state",
+...            avgPop: { $avg: "$pop" }
+...          }
+...      }
+...    ]
+... )
+{ "_id" : "CT", "avgPop" : 13166.307692307691 }
+{ "_id" : "SA", "avgPop" : 19681.666666666668 }
+{ "_id" : "WV", "avgPop" : 6581.5 }
+{ "_id" : "RI", "avgPop" : 3052.3333333333335 }
+{ "_id" : "NH", "avgPop" : 6695.6 }
+
+
+
+5.Display cityname and population of first 3 cities of state of NH with highest population
+> db.cities.aggregate( [
+... { $match: { "state": "NH"} },
+... { $sort: { pop: -1 } },
+... { $limit:3},
+... { $project:{ _id :0,pop: 1,city: 1}}
+... ] )
+{ "city" : "AMHERST", "pop" : 13998 }
+{ "city" : "DUNBARTON", "pop" : 9428 }
+{ "city" : "AUBURN", "pop" : 4085 }
+
+
+
+
+
+6.Display list of all cities in “CT” state in descending order of population
+> db.cities.aggregate( [
+... { $match: { "state": "CT"} },
+... { $sort: { pop: -1 } },
+... { $project:{ _id :0,pop: 1,city: 1}}
+... ] )
+{ "city" : "ENFIELD", "pop" : 45558 }
+{ "city" : "VERNON ROCKVILLE", "pop" : 31966 }
+{ "city" : "SOUTH WINDSOR", "pop" : 22090 }
+{ "city" : "ROCKY HILL", "pop" : 16638 }
+{ "city" : "SIMSBURY", "pop" : 14589 }
+{ "city" : "STAFFORD SPRINGS", "pop" : 12392 }
+{ "city" : "SOMERS", "pop" : 9685 }
+{ "city" : "SUFFIELD", "pop" : 8518 }
+{ "city" : "SOUTH GLASTONBUR", "pop" : 3614 }
+{ "city" : "SHARON", "pop" : 2794 }
+{ "city" : "SALISBURY", "pop" : 1686 }
+{ "city" : "TARIFFVILLE", "pop" : 1477 }
+{ "city" : "RIVERTON", "pop" : 155 }
+
+
+
+
+
+7.Map-reduce function to find the different keys(ie fields like cityname, pop,state etc) in the collection and count its occurrence
+> var mapper1 = function() { for(key in this) { emit(key,1); } };
+> var reducer1 = function(field,count) { return Array.sum(count); };
+> db.cities.mapReduce(mapper1 ,reducer1 ,{out : "query_fields" })
+{
+        "result" : "query_fields",
+        "timeMillis" : 8996,
+        "counts" : {
+                "input" : 28,
+                "emit" : 140,
+                "reduce" : 5,
+                "output" : 5
+        },
+        "ok" : 1
+}
+> db.query_fields.find()
+{ "_id" : "_id", "value" : 28 }
+{ "_id" : "city", "value" : 28 }
+{ "_id" : "loc", "value" : 28 }
+{ "_id" : "pop", "value" : 28 }
+{ "_id" : "state", "value" : 28 }
